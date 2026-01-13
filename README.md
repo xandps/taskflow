@@ -1,157 +1,171 @@
-📊 TaskFlow — Dashboard de Gestão de Tarefas
+# 📊 TaskFlow — Dashboard de Gestão de Tarefas
 
-TaskFlow é um mini dashboard estilo SaaS para gerenciamento de tarefas, desenvolvido com Angular moderno, com foco em boas práticas, organização de código e experiência do usuário.
+TaskFlow é um **mini dashboard estilo SaaS** para gerenciamento de tarefas, desenvolvido com **Angular moderno**, com foco em **boas práticas, organização de código e experiência do usuário**.
 
 O objetivo do projeto é demonstrar domínio dos principais conceitos do Angular aplicados em um cenário realista de mercado.
 
-🚀 Demonstração
+---
 
-Sites de grande exemplo seria DevAzure, jira entre outros...
+## 🚀 Demonstração
+> (adicione aqui o link do deploy quando finalizar — Vercel / Netlify / GitHub Pages)
 
-🎯 Objetivo do Projeto
+---
 
-Este projeto foi criado com foco em portfólio profissional, buscando demonstrar:
+## 🎯 Objetivo do Projeto
 
-Arquitetura organizada
+Este projeto foi criado com foco em **portfólio profissional**, buscando demonstrar:
 
-Componentização correta
+- Arquitetura organizada
+- Componentização correta
+- Uso de Angular moderno (Standalone Components)
+- Boas práticas de front-end
+- UI limpa e profissional
 
-Uso de Angular moderno (Standalone Components)
+---
 
-Boas práticas de front-end
+## 🧠 Funcionalidades
 
-UI limpa e profissional
+- ✅ Login visual (mock)
+- 📋 Listagem de tarefas
+- ➕ Criação de tarefas
+- ✏️ Edição de tarefas
+- 🗑️ Exclusão de tarefas
+- 🔍 Filtro por status
+- 💾 Persistência em LocalStorage
+- ⏳ Estados de loading e empty state
 
-🧠 Funcionalidades
+---
 
-✅ Login visual (mock)
+## 🛠️ Tecnologias Utilizadas
 
-📋 Listagem de tarefas
+- Angular (Standalone Components)
+- TypeScript
+- RxJS
+- Angular Reactive Forms
+- Angular Router
+- LocalStorage
+- Angular Material ou Tailwind CSS
+- HTML5 & CSS3
 
-➕ Criação de tarefas
+---
 
-✏️ Edição de tarefas
+## 📁 Estrutura do Projeto
 
-🗑️ Exclusão de tarefas
-
-🔍 Filtro por status
-
-💾 Persistência em LocalStorage
-
-⏳ Estados de loading e empty state
-
-🛠️ Tecnologias Utilizadas
-
-Angular (Standalone Components)
-
-TypeScript
-
-RxJS
-
-Angular Reactive Forms
-
-Angular Router
-
-LocalStorage
-
-Angular Material ou Tailwind CSS (dependendo da versão)
-
-HTML5 & CSS3
-
-📁 Estrutura do Projeto
+```txt
 src/
  ├── app/
  │   ├── core/
  │   │   ├── models/
  │   │   │   └── task.model.ts
  │   │   ├── services/
- │   │   │   └── task.service.ts
+ │   │   │   └── storage.service.ts
  │   │   └── guards/
  │   │       └── auth.guard.ts
  │   │
  │   ├── features/
  │   │   └── tasks/
- │   │       ├── components/
- │   │       │   ├── task-card/
- │   │       │   └── task-form/
  │   │       ├── pages/
  │   │       │   ├── task-list.page.ts
  │   │       │   └── dashboard.page.ts
+ │   │       │
+ │   │       ├── components/
+ │   │       │   ├── task-card/
+ │   │       │   └── task-form/
+ │   │       │
  │   │       └── services/
+ │   │           └── task.service.ts
  │   │
  │   ├── shared/
  │   │   ├── components/
  │   │   ├── pipes/
  │   │   │   └── task-status.pipe.ts
  │   │   └── directives/
+ │   │       └── highlight.directive.ts
  │   │
- │   └── app.routes.ts
-
+ │   ├── app.routes.ts
+ │   └── app.component.ts
+```
 
 Essa separação facilita escalabilidade e manutenção, simulando um projeto real de produção.
 
-🧩 Conceitos Angular Demonstrados
+---
 
-Standalone Components
+## 📐 Modelo de Dados (Task)
 
-Input & Output
+```ts
+export interface Task {
+  id: number;
+  title: string;
+  description?: string;
+  status: 'pending' | 'in-progress' | 'done';
+  createdAt: Date;
+}
+```
 
-Services e Injeção de Dependência
+---
 
-Reactive Forms
+## 🧩 Conceitos Angular Demonstrados
 
-Pipes personalizados
+- Standalone Components
+- Input & Output
+- Services e Injeção de Dependência
+- Reactive Forms
+- Pipes personalizados
+- Directives customizadas
+- RxJS (BehaviorSubject, Observable)
+- Roteamento
+- Guards (mock)
+- Organização por features
 
-RxJS (BehaviorSubject, Observable)
+---
 
-Roteamento
+## 🎨 Interface
 
-Guards (mock)
+- Layout estilo dashboard
+- Design limpo e moderno
+- Feedback visual (loading / empty state)
+- Tema escuro para estética profissional
 
-Boas práticas de organização
+Adicione screenshots do projeto aqui 📸
 
-🎨 Interface
+---
 
-Layout estilo dashboard
+## ▶️ Como Executar o Projeto
 
-Design limpo e moderno
-
-Feedback visual (loading / empty state)
-
-Tema escuro para estética profissional
-
-Prints do projeto devem ser adicionados aqui 📸
-
-▶️ Como Executar o Projeto
+```bash
 # Instalar dependências
 npm install
 
 # Rodar o projeto
 ng serve
-
-
+```
 Acesse:
-
+```txt
 http://localhost:4200
+```
 
-🧪 Melhorias Futuras (Roadmap)
+---
 
-🔐 Autenticação real com JWT
+## 🧪 Melhorias Futuras (Roadmap)
 
-🌐 Integração com API REST
+- 🔐 Autenticação real com JWT
+- 🌐 Integração com API REST
+- 📊 Gráficos de produtividade
+- 📱 Responsividade mobile
+- 🧪 Testes unitários
 
-📊 Gráficos de produtividade
+---
 
-📱 Responsividade mobile
-
-🧪 Testes unitários com Jasmine/Karma
-
-👨‍💻 Autor
+## 👨‍💻 Autor
 
 Xand Sobral
+
 Desenvolvedor Front-end / Full Stack
+
 Angular • .NET • TypeScript
 
-📌 Observação Final
+---
+
+## 📌 Observação Final
 
 Este projeto foi desenvolvido em curto prazo com foco em clareza, organização e boas práticas, simulando um ambiente profissional real.
