@@ -6,14 +6,22 @@
                 <img src="Logo.png" alt="Logo">
                 <h2>Log in</h2>
             </div>
-            <app-input type="text" placeholder="Username"></app-input>
-            <app-input type="password" placeholder="Password"></app-input>
-            <app-button text="Entrar"></app-button>
+            <app-input [formField]="formularioCliente.email" type="text" placeholder="Username"></app-input>
+            <app-input [formField]="formularioCliente.password" type="password" placeholder="Password"></app-input>
+            <app-button (clicked)="login()" text="Entrar"></app-button>
         </div>
     </div>
     <div class="banner">
         <div class="block">
             <h1>Welcome to TaskFlow</h1>
+            <div>
+                <strong>formularioCliente().value():</strong>
+                <pre>{{ formularioCliente().value() | json }}</pre>
+            </div>
+            <div>
+                <strong>formularioCliente().valid() :</strong>
+                <pre>{{ formularioCliente().valid() | json }}</pre>
+            </div>
         </div>
     </div>
 </div>
