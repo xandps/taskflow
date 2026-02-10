@@ -1,0 +1,77 @@
+.container-tasks {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .columns {
+        margin: 20px;
+        display: flex;
+        gap: 20px;
+        background-color: rgb(32, 32, 32);
+        padding: 10px;
+        border-radius: 8px;
+        width: 100%;
+        justify-content: space-between;
+
+        .title-column {
+            color: gray;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: gray;
+            background-color: rgb(60, 60, 60);
+            padding: 10px;
+            border-radius: 8px;
+            width: 90%;
+
+            .tasks {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                label{
+                    color: white;
+                    font-size: 0.9rem;
+                }
+
+                .task-card {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    background-color: rgb(40, 40, 40);
+                    font-size: 1rem;
+                    padding: 10px;
+                    border-radius: 2px;
+                    cursor: grab;
+                    user-select: none;
+                    border-bottom: 2px solid rgb(146, 0, 214);
+
+                    .info {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+
+                    .status {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .priority_color{
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

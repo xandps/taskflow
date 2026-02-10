@@ -1,1 +1,26 @@
-<p>task-manager-page works!</p>
+<app-header></app-header>
+
+<div class="container-tasks">
+  <div class="columns">
+    @for (column of columns; track column.key) {
+      <div class="column">
+        <label class="title-column">{{ column.label }}</label>
+
+        <div class="tasks">
+          @for (task of tasks | tasksByStatus: column.key; track task.id) {
+            <div class="task-card">
+              <div class="info">
+                <label>{{ task.title }}</label>
+                <button>Editar</button>
+              </div>
+              <div class="status">
+                <label>Prioridade: {{ task.priority }}</label>
+                <span class="priority_color" [style.background-color]='priorityColor[task.priority]'></span>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

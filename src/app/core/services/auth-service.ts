@@ -9,38 +9,30 @@ export interface MockUser {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly SESSION_DURATION = 30 * 60 * 1000;
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
   private sessionTimeout?: number;
 
   private readonly TOKEN_KEY = 'taskflow_token';
   private readonly USER_KEY = 'taskflow_user';
-
-  isLoggedIn = signal<boolean>(false);
-  isReady = signal(false);
-
+  
   constructor() {
-    if (this.isBrowser) {
-      this.restoreSession();
-    }
-    this.isReady.set(true);
+    
   }
 
   login(email: string, password: string): boolean {
     if (!this.isBrowser) return false;
 
     if (email === 'admin@taskflow.com' && password === '123456') {
-      const expiresAt = Date.now() + this.SESSION_DURATION;
+      const expiresAt = Date.now() + 30 * 60 * 1000;
 
+      console.log('Logging in, session expires at: ' + new Date(expiresAt).toISOString());
       localStorage.setItem(this.TOKEN_KEY, 'mock-jwt-token');
       localStorage.setItem(
         this.USER_KEY,
         JSON.stringify({ email, name: 'Admin TaskFlow' })
       );
       localStorage.setItem('taskflow_expires_at', expiresAt.toString());
-
-      this.isLoggedIn.set(true);
 
       this.startSessionTimer(expiresAt);
 
@@ -50,32 +42,11 @@ export class AuthService {
     return false;
   }
 
-  private restoreSession(): void {
-    if (!this.isBrowser) return;
-
-    const token = localStorage.getItem(this.TOKEN_KEY);
-    const expiresAt = localStorage.getItem('taskflow_expires_at');
-
-    if (!token || !expiresAt) {
-      this.isLoggedIn.set(false);
-      return;
-    }
-
-    if (Date.now() > Number(expiresAt)) {
-      this.clearSession();
-      return;
-    }
-
-    this.isLoggedIn.set(true);
-    this.startSessionTimer(Number(expiresAt));
-  }
-
 
   private clearSession(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.USER_KEY);
     localStorage.removeItem('taskflow_expires_at');
-    this.isLoggedIn.set(false);
   }
 
   logout(): void {
@@ -100,8 +71,22 @@ export class AuthService {
     return user ? JSON.parse(user) : null;
   }
 
-  isAuthenticated(): boolean {
-    return this.isLoggedIn();
+  vefifySession(): boolean {
+    if (!this.isBrowser) return true;
+
+    const token = localStorage.getItem('taskflow_token');
+    const expiresAt = localStorage.getItem('taskflow_expires_at');
+
+    if (!token || !expiresAt) {
+      return false;
+    }
+
+    if (Date.now() > Number(expiresAt)) {
+      this.logout();
+      return false;
+    }
+
+    return true;
   }
 
   private startSessionTimer(expiresAt: number) {
